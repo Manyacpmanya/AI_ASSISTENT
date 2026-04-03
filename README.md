@@ -1,9 +1,5 @@
-Here is your **clean, professional, official README.md**
-👉 (No 🔗 symbols, no hidden characters, properly formatted)
 
----
 
-````md
 # AI_ASSISTENT
 LLM model for all web development
 
@@ -502,8 +498,6 @@ Example:
 
 ```
 [0.12, -0.45, 0.89]
-```
-
 ```
 
 ---
