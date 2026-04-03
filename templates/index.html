@@ -1,0 +1,209 @@
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>AI Assistant</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* FLOATING BUTTON */
+.chat-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+/* OVERLAY */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.4);
+    backdrop-filter: blur(5px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+/* CHAT MODAL */
+.chat-container {
+    width: 500px;
+    max-width: 90%;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+    overflow: hidden;
+    animation: popUp 0.3s ease;
+}
+
+@keyframes popUp {
+    from {transform: scale(0.8); opacity: 0;}
+    to {transform: scale(1); opacity: 1;}
+}
+
+/* HEADER */
+.header {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.close-btn {
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* CONTENT */
+.content {
+    padding: 20px;
+}
+
+textarea {
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    resize: none;
+    margin-bottom: 10px;
+}
+
+button.send-btn {
+    width: 100%;
+    padding: 10px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.reply-container {
+    margin-top: 10px;
+    border: 1px solid #eee;
+    border-radius: 10px;
+}
+
+.reply-header {
+    background: #f5f5f5;
+    padding: 8px;
+    font-weight: bold;
+}
+
+#output {
+    padding: 10px;
+    min-height: 60px;
+}
+</style>
+
+</head>
+
+<body>
+
+<!-- FLOAT BUTTON -->
+<button class="chat-toggle" onclick="openChat()">🤖</button>
+
+<!-- OVERLAY + MODAL -->
+<div class="overlay" id="overlay">
+
+    <div class="chat-container">
+
+        <div class="header">
+            <h3>AI Assistant</h3>
+            <span class="close-btn" onclick="closeChat()">❌</span>
+        </div>
+
+        <div class="content">
+
+            <textarea id="question" rows="3" placeholder="Ask your query..."></textarea>
+
+            <button class="send-btn" id="askBtn" onclick="ask()">Send</button>
+
+            <div class="reply-container">
+                <div class="reply-header">Response</div>
+                <div id="output"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+let isLoading = false;
+
+/* OPEN / CLOSE */
+function openChat(){
+    document.getElementById("overlay").style.display = "flex";
+}
+
+function closeChat(){
+    document.getElementById("overlay").style.display = "none";
+}
+
+/* UPDATED FETCH URL */
+async function ask(){
+
+    if(isLoading) return;
+
+    let question = document.getElementById("question").value;
+    let btn = document.getElementById("askBtn");
+    let output = document.getElementById("output");
+
+    if(!question){
+        alert("Enter question");
+        return;
+    }
+
+    isLoading = true;
+    btn.disabled = true;
+    btn.innerText = "⏳";
+
+    output.innerText = "Analyzing...";
+
+    try{
+        let res = await fetch("/ask", {   // ✅ CHANGED HERE
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({question})
+        });
+
+        let data = await res.json();
+        output.innerText = data.answer;
+
+    }catch(err){
+        output.innerText = "❌ Error occurred!";
+    }
+
+    isLoading = false;
+    btn.disabled = false;
+    btn.innerText = "Send";
+}
+</script>
+
+</body>
+</html>
