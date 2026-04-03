@@ -5,19 +5,8 @@ LLM model for all web development
 
 This project requires a configuration file for database and API settings.
 
-### 🔹 Step 1: Create `config.py` and update values
-Update with your local system database details:
-
-```
-DB_URI = "mysql+pymysql://root:yourpassword@localhost/your_db"
-OLLAMA_URL = "http://localhost:11434/api/chat"
-MODEL_NAME = "llama3"
-```
-## 🔐 Configuration Setup
-
-This project requires a configuration file for database and API settings.
-
 ### 🔹 Step 1: Create config.py and update values
+Update with your local system database details:
 
 DB_URI = "mysql+pymysql://root:yourpassword@localhost/your_db"
 OLLAMA_URL = "http://localhost:11434/api/chat"
@@ -136,10 +125,15 @@ ollama --version
 
 ### 🔹 Step 2: Navigate to Project Folder
 
-#### 🪟 Windows/  🐧 Ubuntu
+#### 🪟 Windows
 
 cd "your-project-folder-path"
 
+#### 🐧 Ubuntu
+
+cd /path/to/your/project
+
+---
 
 ### 🔹 Step 3: Create Virtual Environment
 
@@ -193,236 +187,6 @@ python3 main.py
 
 * Flask server starts
 * Open browser → http://127.0.0.1:5001
-* Your AI assistant is ready 🚀
-
-
-## 🐍 Python Setup (Installation)
-
-Python is the **main engine** of this project — it runs backend logic, database operations, and AI processing.
-
----
-
-### 🔹 Step 1: Install Python
-
-#### 🪟 Windows
-
-1. Download Python from official website
-2. Run installer
-3. ✅ Check: `Add Python to PATH`
-4. Click Install
-
-#### 🐧 Ubuntu
-
-```bash
-sudo apt update
-sudo apt install python3 python3-pip -y
-```
-
----
-
-### 🔹 Step 2: Verify Installation
-
-#### 🪟 Windows
-
-```
-python --version
-```
-
-#### 🐧 Ubuntu
-
-```
-python3 --version
-```
-
----
-
-### 🔹 Step 3: Install & Verify pip
-
-#### 🪟 Windows
-
-```
-python -m ensurepip --upgrade
-python -m pip install --upgrade pip
-pip --version
-```
-
-#### 🐧 Ubuntu
-
-```
-python3 -m ensurepip --upgrade
-python3 -m pip install --upgrade pip
-pip3 --version
-```
-
----
-
-## 🤖 Ollama Setup (LLM Installation)
-
-Ollama lets you run AI models locally without cloud APIs.
-
----
-
-### 🔹 Step 1: Install Ollama
-
-#### 🪟 Windows
-
-* Download and install Ollama
-* Open it (runs in background)
-
-#### 🐧 Ubuntu
-
-```bash
-curl -fsSL https://ollama.com/install.sh | sh
-```
-
----
-
-### 🔹 Step 2: Verify Installation
-
-#### 🪟 Windows
-
-```
-ollama --version
-```
-
-#### 🐧 Ubuntu
-
-```
-ollama --version
-```
-
----
-
-### 🔹 Step 3: Download LLaMA3 Model
-
-#### 🪟 Windows / 🐧 Ubuntu
-
-```
-ollama pull llama3
-```
-
----
-
-### 🔹 Step 4: Run the Model
-
-```
-ollama run llama3
-```
-
----
-
-### 🔹 Step 5: API Usage
-
-```
-http://localhost:11434
-```
-
----
-
-## ▶️ Run the Project
-
-### 🔹 Step 1: Verify Installations
-
-#### 🪟 Windows
-
-```
-python --version
-ollama --version
-```
-
-#### 🐧 Ubuntu
-
-```
-python3 --version
-ollama --version
-```
-
----
-
-### 🔹 Step 2: Navigate to Project Folder
-
-#### 🪟 Windows
-
-```
-cd "your-project-folder-path"
-```
-
-#### 🐧 Ubuntu
-
-```
-cd /path/to/your/project
-```
-
----
-
-### 🔹 Step 3: Create Virtual Environment
-
-#### 🪟 Windows
-
-```
-python -m venv venv
-```
-
-#### 🐧 Ubuntu
-
-```
-python3 -m venv venv
-```
-
----
-
-### 🔹 Step 4: Activate Virtual Environment
-
-#### 🪟 Windows
-
-```
-venv\Scripts\activate
-```
-
-#### 🐧 Ubuntu
-
-```
-source venv/bin/activate
-```
-
----
-
-### 🔹 Step 5: Install Dependencies
-
-#### 🪟 Windows
-
-```
-pip install -r requirements.txt
-```
-
-#### 🐧 Ubuntu
-
-```
-pip3 install -r requirements.txt
-```
-
----
-
-### 🔹 Step 6: Run the Application
-
-#### 🪟 Windows
-
-```
-python main.py
-```
-
-#### 🐧 Ubuntu
-
-```
-python3 main.py
-```
-
----
-
-### ✅ Output
-
-* Flask server starts
-* Open browser → `http://127.0.0.1:5001`
 * Your AI assistant is ready 🚀
 
 
