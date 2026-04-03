@@ -6,3 +6,5 @@ sentence-transformers
 numpy
 requests
 python-dotenv
+cryptography
+flask-cors
