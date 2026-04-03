@@ -156,19 +156,11 @@ ollama --version
 
 ### Step 2: Navigate to Project Folder
 
-#### Windows
+#### Windows / Ubuntu
 
 ```bash
 cd "your-project-folder-path"
 ```
-
-#### Ubuntu
-
-```bash
-cd /path/to/your/project
-```
-
----
 
 ### Step 3: Create Virtual Environment
 
@@ -500,7 +492,3 @@ Example:
 [0.12, -0.45, 0.89]
 ```
 
----
-
-If you want, I can also make this **GitHub top-level professional (with badges, architecture diagram, and screenshots)** 👍
-```
