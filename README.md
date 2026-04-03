@@ -9,7 +9,9 @@ This project requires a configuration file for database and API settings.
 Update with your local system database details:
 
 DB_URI = "mysql+pymysql://root:yourpassword@localhost/your_db"
+
 OLLAMA_URL = "http://localhost:11434/api/chat"
+
 MODEL_NAME = "llama3"
 
 ---
