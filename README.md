@@ -3,24 +3,7 @@
 # AI_ASSISTENT
 LLM model for all web development
 
----
 
-## 🔐 Configuration Setup
-
-This project requires a configuration file for database and API settings.
-
-### Step 1: Create config.py and update values
-
-Update with your local system database details:
-
-```python
-DB_URI = "mysql+pymysql://root:yourpassword@localhost/your_db"
-OLLAMA_URL = "http://localhost:11434/api/chat"
-MODEL_NAME = "llama3"
-````
-Make sure to execute the SQL queries provided in the `sample_db.sql` file using MySQL Workbench before running the project.
-
----
 ## 🐍 Python Setup (Installation)
 
 Python is the main engine of this project — it runs backend logic, database operations, and AI processing.
@@ -207,10 +190,27 @@ pip install -r requirements.txt
 ```bash
 pip3 install -r requirements.txt
 ```
+---
+
+Step 6:🔐 Configuration Setup
+
+This project requires a configuration file for database and API settings.
+
+### Step 1: Create config.py and update values
+
+Update with your local system database details:
+
+```python
+DB_URI = "mysql+pymysql://root:yourpassword@localhost/your_db"
+OLLAMA_URL = "http://localhost:11434/api/chat"
+MODEL_NAME = "llama3"
+````
+Make sure to execute the SQL queries provided in the `sample_db.sql` file using MySQL Workbench before running the project.
 
 ---
 
-### Step 6: Run the Application
+
+### Step 7: Run the Application
 
 #### Windows
 
