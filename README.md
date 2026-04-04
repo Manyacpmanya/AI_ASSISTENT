@@ -18,9 +18,9 @@ DB_URI = "mysql+pymysql://root:yourpassword@localhost/your_db"
 OLLAMA_URL = "http://localhost:11434/api/chat"
 MODEL_NAME = "llama3"
 ````
+Make sure to execute the SQL queries provided in the `sample_db.sql` file using MySQL Workbench before running the project.
 
 ---
-
 ## 🐍 Python Setup (Installation)
 
 Python is the main engine of this project — it runs backend logic, database operations, and AI processing.
@@ -491,4 +491,82 @@ Example:
 ```
 [0.12, -0.45, 0.89]
 ```
+
+## 📝 Data Retrieval Methods
+
+Your system can fetch data for LLM processing in **two ways** 
+
+---
+
+### 1️⃣ Single Table Join (Example: `users` + `student_academics`)
+
+**Purpose:** Train LLM on **specific structured data** from one or two related tables.
+
+**Code (main.py):**
+
+```python
+def get_all_data():
+    with engine.connect() as conn:
+        result = conn.execute(text("""
+        SELECT u.name, u.usn, u.branch, sa.cgpa
+        FROM users u
+        JOIN student_academics sa ON u.id = sa.student_id
+        """))
+        rows = result.fetchall()
+        return " ".join([str(r) for r in rows])
+```
+
+---
+
+### 2️⃣ Multiple Tables (Dynamic Retrieval)
+
+**Purpose:** Train LLM on **all relevant tables** to answer queries spanning multiple datasets.
+
+**Code (main.py):**
+
+```python
+def get_all_data():
+    all_text = ""
+
+    tables = [
+        "users",
+        "student_academics",
+        "student_backlogs",
+        "teacher_feedback",
+        "activity",
+        "copyrights",
+        "events",
+        "gatepass",
+        "internship",
+        "late",
+        "mini_projects",
+        "participants",
+        "participation"
+    ]
+
+    with engine.connect() as conn:
+        for table in tables:
+            try:
+                result = conn.execute(text(f"SELECT * FROM {table} LIMIT 50"))
+                rows = result.fetchall()
+
+                # Convert each row to string
+                table_text = f"\n--- {table.upper()} ---\n"
+                table_text += " ".join([str(r) for r in rows])
+
+                all_text += table_text
+
+            except Exception as e:
+                print(f"Skipping {table}: {e}")
+
+    return all_text
+```
+
+
+### Output
+
+| **Query Example**         | **Output Source** | **LLM Role**                      |
+| ------------------------- | ----------------- | --------------------------------- |
+| roadmap of Python         | LLM-generated     | Generates from training data      |
+| Show detail of 4GW23CI031 | Database / RAG    | Formats/summarizes retrieved data |
 
