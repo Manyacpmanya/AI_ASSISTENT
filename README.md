@@ -237,7 +237,7 @@ python3 main.py
 ## 🔁 System Flow
 
 ```
-ai_assistent.php (UI)
+index.html  (ai_assistent ui)
 ↓
 fetch() API call
 ↓
